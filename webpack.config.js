@@ -46,7 +46,7 @@ module.exports = {
     plugins:[
         new HtmlPlugin({
             filename : "index.html",
-            template:"./src/index.html"
+            template:"./public/index.html"
         }),
         new MiniCssExtractPlugin(),
         new webpack.DefinePlugin({
@@ -57,6 +57,12 @@ module.exports = {
     ],
     devServer :{
         historyApiFallback:true,
-        port : 3000
+        port : 3000,
+        proxy: {
+            "/": {
+            target: "http://localhost:5000",
+            secure: false,
+            },
+            },
     }
 }
