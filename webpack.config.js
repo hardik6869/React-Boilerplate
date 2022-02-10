@@ -1,4 +1,5 @@
-const HtmlPlugin = require("html-webpack-plugin");
+/* eslint-disable @typescript-eslint/no-var-requires */
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
@@ -44,11 +45,10 @@ module.exports = {
         ]
     },
     plugins:[
-        new HtmlPlugin({
+        new HtmlWebpackPlugin({
             filename : "index.html",
             template:"./public/index.html"
         }),
-        new MiniCssExtractPlugin(),
         new webpack.DefinePlugin({
             "process.env":{
                 "NODE_ENV":JSON.stringify(process.env.NODE_ENV)
@@ -56,6 +56,7 @@ module.exports = {
         })
     ],
     devServer :{
+        open: true,
         historyApiFallback:true,
         port : 3000,
         proxy: {
