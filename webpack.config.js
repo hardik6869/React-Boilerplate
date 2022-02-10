@@ -2,6 +2,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+
 const webpack = require("webpack");
 module.exports = {
     output :{
@@ -41,13 +42,21 @@ module.exports = {
             {
                 test:/\.s[ac]ss$/i,
                 use:[MiniCssExtractPlugin.loader,"css-loader","sass-loader"]
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
         ]
     },
     plugins:[
         new HtmlWebpackPlugin({
             filename : "index.html",
             template:"./public/index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'static/css/[name].[contenthash:8].css',
+            chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
         new webpack.DefinePlugin({
             "process.env":{

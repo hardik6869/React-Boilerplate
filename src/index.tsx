@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 const App: FC = () => {
     const [advice, setAdvice] = useState('');
@@ -21,7 +22,7 @@ const App: FC = () => {
 
     return (
         <div>
-            <h1> Hello World {advice} </h1>
+            <h1>Hello World {advice} </h1>
         </div>
     );
 };
